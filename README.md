@@ -1,0 +1,25 @@
+# Lesson 7 Hardhat-fund-me
+## Contents
+- Lesson 7: Hardhat Fund Me
+    - [x] Hardhat Setup
+    - [x] Linting
+    - [x] Hardhat Setup Continued
+    - [x] Importing from NPM
+    - [x] Hardhat Deploy
+    - [ ] Mocking & helper-hardhat-config
+    - [ ] Utils Folder
+    - [ ] Testnet Demo
+    - [ ] Solidity Style Guide
+    - [ ] Testing Fund Me
+    - [ ] Breakpoints & Debugging
+    - [ ] Gas III
+    - [ ] console.log & Debugging
+    - [ ] Testing Fund Me II
+    - [ ] Storage in Solidity
+    - [ ] Gas Optimizations using storage knowledge
+    - [ ] Solidity Chainlink Style Guide
+    - [ ] Storage Review
+    - [ ] Staging Tests
+    - [ ] Running Scripts on a Local Node
+    - [ ] Adding scripts to your package.json
+    - [ ] Pushing to Github
