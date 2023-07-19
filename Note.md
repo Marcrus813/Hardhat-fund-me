@@ -22,3 +22,51 @@ Problem: How to interact and test code locally? Default hardhat gets destroyed e
 > Mocking is primarily used in unit testing. An object under test may have dependencies on other (complex) objects. To isolate the behavior of the object you want to test you replace the other objects by mocks that simulate the behavior of the real objects. This is useful if the real objects are impractical to incorporate into the unit test. In short, mocking is creating objects that simulate the behavior of real objects.
 
 _View `01-deploy-fund-me.js` and `FundMe.sol` and `PriceConverter.sol` comments for more info_
+
+### Working with local node
+
+> See code comments for coding notes
+
+Running local node automatically deploys contracts
+
+## Solidity code style
+
+### Order of contents
+
+> 1. Pragma statements
+> 2. Import statements
+> 3. Interfaces
+> 4. Libraries
+> 5. Contracts
+>     1. Type declarations
+>     2. State variables
+>     3. Events
+>     4. Errors
+>     5. Modifiers
+>     6. Functions
+>         1. Constructor
+>         2. receive
+>         3. fallback
+>         4. external
+>         5. public
+>         6. internal
+>         7. private
+>         8. view / pure
+
+NatSpec: Ethereum Natural language Specification Format, in-code docs, pretty useful, already know that
+
+## Testing(More advanced)
+
+### Aspects
+
+#### Staging and unit
+
+Unit tests are done locally, Stage tests are done on test nets(Finally)
+
+- Unit test
+    Test minimal portions of the code
+    - Done on:
+        local hardhat
+        forked hardhat
+- Staging
+    Units are done, move on to integration

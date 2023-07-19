@@ -3,10 +3,23 @@ pragma solidity ^0.8.7;
 
 import "./PriceConverter.sol";
 
-error NotOwner();
+// Error codes
+error FundMe__NotOwner();
 
+// Interfaces, libs, contracts
+
+/**
+ * @title A contract for crowd funding
+ * @author V
+ * @notice This contract is to demo a sample funding contract
+ * @dev This implements price feeds as our library
+ */
 contract FundMe {
+    // Type Declarations
+
     using PriceConverter for uint256;
+
+    // State variables
 
     uint256 public constant MIN_USD = 50 * 1e18;
 
@@ -17,6 +30,16 @@ contract FundMe {
 
     AggregatorV3Interface public priceFeed;
 
+    // Modifiers
+    modifier onlyOwner() {
+        require(msg.sender == i_owner, "Sender is not owner"); //Every letter takes space -> not gas efficient
+        if (msg.sender != i_owner) {
+            revert FundMe__NotOwner();
+        }
+
+        _;
+    }
+
     /**
      *
      * @param priceFeedAddress Can be set by function calls to adapt to different chains
@@ -24,6 +47,14 @@ contract FundMe {
     constructor(address priceFeedAddress) {
         i_owner = msg.sender;
         priceFeed = AggregatorV3Interface(priceFeedAddress);
+    }
+
+    receive() external payable {
+        fund();
+    }
+
+    fallback() external payable {
+        fund();
     }
 
     function fund() public payable {
@@ -53,22 +84,5 @@ contract FundMe {
             value: address(this).balance
         }("");
         require(callSuccess, "Call failed");
-    }
-
-    modifier onlyOwner() {
-        require(msg.sender == i_owner, "Sender is not owner"); //Every letter takes space -> not gas efficient
-        if (msg.sender != i_owner) {
-            revert NotOwner();
-        }
-
-        _;
-    }
-
-    receive() external payable {
-        fund();
-    }
-
-    fallback() external payable {
-        fund();
     }
 }

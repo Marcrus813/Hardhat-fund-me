@@ -6,10 +6,13 @@
     - [x] Hardhat Setup Continued
     - [x] Importing from NPM
     - [x] Hardhat Deploy
-    - [ ] Mocking & helper-hardhat-config
-    - [ ] Utils Folder
-    - [ ] Testnet Demo
-    - [ ] Solidity Style Guide
+    - [x] Mocking & helper-hardhat-config
+        - Price feed contract for hardhat
+            - Mocking actual price feeds
+        - Define chains in `helper-hardhat-config`
+    - [x] Utils Folder
+    - [x] Testnet Demo
+    - [x] Solidity Style Guide
     - [ ] Testing Fund Me
     - [ ] Breakpoints & Debugging
     - [ ] Gas III

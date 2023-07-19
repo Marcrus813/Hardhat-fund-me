@@ -15,29 +15,41 @@ const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY;
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
 	defaultNetwork: "hardhat",
-	solidity: "0.8.19",
+	/**
+	 * Can also compile multiple versions of solidity to make other versions compatible
+	 */
+	solidity: {
+		compilers: [
+			{ version: "0.8.19" },
+			{ version: "0.7.7" },
+			{ version: "0.6.6" },
+		],
+	},
 	networks: {
 		sepolia: {
 			url: RPC_URL_SEPOLIA,
 			accounts: [PRIV_KEY_SEPOLIA],
 			chainId: 11155111,
+			blockConfirmations: 15, // Specify block confirmations for each net work here
 		},
 		localhost: {
 			url: "http://127.0.0.1:8545/",
 			chainId: 31337,
+			blockConfirmations: 1,
 		},
 	},
 	etherscan: {
 		apiKey: ETHERSCAN_API_KEY,
 	},
-	namedAccounts: { // Name accounts in `accounts` array
-        deployer:{
-            default: 0, // Account at 0 is deployer
-            4: 0 // chainId: account index
-        }
-    },
+	namedAccounts: {
+		// Name accounts in `accounts` array
+		deployer: {
+			default: 0, // Account at 0 is deployer
+			4: 0, // chainId: account index
+		},
+	},
 	gasReporter: {
-		enabled: false, // Turn on or off
+		enabled: true, // Turn on or off
 		outputFile: "./Test_Reports/Gas_Report.txt",
 		noColors: true,
 		currency: "USD",
