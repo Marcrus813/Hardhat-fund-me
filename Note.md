@@ -66,7 +66,7 @@ Unit tests are done locally, Stage tests are done on test nets(Finally)
 - Unit test
     Test minimal portions of the code
     - Done on:
-        local hardhat
-        forked hardhat
+        - local hardhat
+        - forked hardhat
 - Staging
     Units are done, move on to integration
