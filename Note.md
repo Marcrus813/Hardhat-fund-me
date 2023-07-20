@@ -29,6 +29,8 @@ _View `01-deploy-fund-me.js` and `FundMe.sol` and `PriceConverter.sol` comments 
 
 Running local node automatically deploys contracts
 
+**_Issue encountered: When using localhost or default hardhat, while there's no other txn going on, if we wait for block confirmation, it will be hung, so limit block confirmation to 0_**
+
 ## Solidity code style
 
 ### Order of contents
@@ -59,14 +61,20 @@ NatSpec: Ethereum Natural language Specification Format, in-code docs, pretty us
 
 ### Aspects
 
-#### Staging and unit
+#### Staging and unit(Definitions)
 
 Unit tests are done locally, Stage tests are done on test nets(Finally)
 
-- Unit test
+-   Unit test
     Test minimal portions of the code
-    - Done on:
-        - local hardhat
-        - forked hardhat
-- Staging
-    Units are done, move on to integration
+    -   Done on:
+        -   local hardhat
+        -   forked hardhat
+-   Staging
+    -   Units are done, move on to integration(Final step)
+
+### Unit test
+
+Use more `describe` to group tests, see code comments for more.
+
+There appears to be some issue with `yarn hardhat test`, installed `mocha` and use `yarn mocha test/**/*.js` works fine

@@ -26,16 +26,19 @@ module.exports = {
 		],
 	},
 	networks: {
+		hardhat: {
+			blockConfirmations: 0,
+		},
 		sepolia: {
 			url: RPC_URL_SEPOLIA,
 			accounts: [PRIV_KEY_SEPOLIA],
 			chainId: 11155111,
-			blockConfirmations: 15, // Specify block confirmations for each net work here
+			blockConfirmations: 5, // Specify block confirmations for each net work here
 		},
 		localhost: {
 			url: "http://127.0.0.1:8545/",
 			chainId: 31337,
-			blockConfirmations: 1,
+			blockConfirmations: 0,
 		},
 	},
 	etherscan: {
@@ -45,7 +48,7 @@ module.exports = {
 		// Name accounts in `accounts` array
 		deployer: {
 			default: 0, // Account at 0 is deployer
-			4: 0, // chainId: account index
+			31337: 0, // chainId: account index
 		},
 	},
 	gasReporter: {
@@ -55,5 +58,8 @@ module.exports = {
 		currency: "USD",
 		coinmarketcap: COINMARKETCAP_API_KEY,
 		token: "ETH", // Default state, change if to change network
+	},
+	mocha: {
+		timeout: 500000,
 	},
 };

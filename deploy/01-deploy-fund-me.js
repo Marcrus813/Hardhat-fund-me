@@ -47,15 +47,22 @@ module.exports = async (hre) => {
 	 */
 
 	const fundMeArgs = [ethUsdPriceFeedAddress];
-	const fundMe = await deploy("FundMe" /**Name of the contract */, {
-		/**
-		 * List of overrides
-		 */
+	const deployOptions_fundMe = {
 		from: deployer,
 		args: fundMeArgs, // For contract constructor
 		log: true,
-		waitConfirmations: network.config.blockConfirmations || 10
-	});
+		waitConfirmations: network.config.blockConfirmations,
+	};
+	/* if (devChains.includes(network.name)) {
+		deployOptions_fundMe["waitConfirmations"] = 0;
+	} else {
+		deployOptions_fundMe["waitConfirmations"] =
+			network.config.blockConfirmations || 5;
+	} */
+	const fundMe = await deploy(
+		"FundMe" /**Name of the contract */,
+		deployOptions_fundMe
+	);
 
 	// Verifying
 	if (!devChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {
