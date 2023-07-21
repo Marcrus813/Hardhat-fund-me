@@ -2,6 +2,9 @@ require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
 require("solidity-coverage");
 require("hardhat-deploy");
+require("hardhat-gas-reporter");
+require("@nomicfoundation/hardhat-ethers");
+
 // CN Specific
 const { ProxyAgent, setGlobalDispatcher } = require("undici");
 const proxyAgent = new ProxyAgent("http://172.24.144.1:10809");
@@ -52,7 +55,7 @@ module.exports = {
 		},
 	},
 	gasReporter: {
-		enabled: true, // Turn on or off
+		enabled: false, // Turn on or off
 		outputFile: "./Test_Reports/Gas_Report.txt",
 		noColors: true,
 		currency: "USD",
@@ -60,6 +63,6 @@ module.exports = {
 		token: "ETH", // Default state, change if to change network
 	},
 	mocha: {
-		timeout: 500000,
+		paths: ["./test/unit"],
 	},
 };
