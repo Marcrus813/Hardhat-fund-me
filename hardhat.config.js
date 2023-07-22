@@ -56,7 +56,7 @@ module.exports = {
 	},
 	gasReporter: {
 		enabled: false, // Turn on or off
-		outputFile: "./Test_Reports/Gas_Report.txt",
+		outputFile: "Gas_Report.txt",
 		noColors: true,
 		currency: "USD",
 		coinmarketcap: COINMARKETCAP_API_KEY,
