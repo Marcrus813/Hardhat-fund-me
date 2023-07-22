@@ -79,9 +79,6 @@ Use more `describe` to group tests, see code comments for more.
 
 -   Problem notes
     -   There appears to be some issue with `yarn hardhat test`, installed `mocha` and use `yarn mocha test/**/*.js` works fine.
-        -   _Issue with gas-reporter, but I thought I fixed that already?_
-        -   **Conclusion**
-            -   Fk the wall
     -   `Error: could not decode result data (value="0x", info={ "method": "getPriceFeed", "signature": "getPriceFeed()" }, code=BAD_DATA, version=6.6.4)`
         -   Not problem with `priceFeed()`(Auto generated getter for public field variable), but with the object itself
         -   It's a problem with versions
