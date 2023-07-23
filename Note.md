@@ -229,3 +229,9 @@ Tests used on actual test net, similar to unit test but assume on test net(last 
 ## Running script on local node
 
 Interacting with local network and contracts quickly
+
+***
+
+## Github
+
+[CN Specific guide](https://blog.csdn.net/weixin_43914200/article/details/121316043)
