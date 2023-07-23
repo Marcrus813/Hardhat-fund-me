@@ -5,6 +5,8 @@ import "./PriceConverter.sol";
 
 // Error codes
 error FundMe__NotOwner();
+error FundMe__NotEnoughETH();
+error FundMe__WithdrawFailed();
 
 // Interfaces, libs, contracts
 
@@ -23,12 +25,12 @@ contract FundMe {
 
     uint256 public constant MIN_USD = 50 * 1e18;
 
-    address[] public s_funders;
-    mapping(address => uint256) public s_addressToAmountFunded;
+    address[] private s_funders;
+    mapping(address => uint256) private s_addressToAmountFunded;
 
-    address public immutable i_owner;
+    address private immutable i_owner;
 
-    AggregatorV3Interface public s_priceFeed;
+    AggregatorV3Interface private s_priceFeed;
 
     // Modifiers
     modifier onlyOwner() {
@@ -58,10 +60,10 @@ contract FundMe {
     }
 
     function fund() public payable {
-        require(
-            msg.value.getConversionRate(s_priceFeed) > MIN_USD,
-            "Failed! Not enough paid"
-        );
+        if (!(msg.value.getConversionRate(s_priceFeed) > MIN_USD)) {
+            revert FundMe__NotEnoughETH();
+        }
+
         s_funders.push(msg.sender);
         s_addressToAmountFunded[msg.sender] = msg.value;
     }
@@ -87,20 +89,45 @@ contract FundMe {
         require(callSuccess, "Call failed");
     } */
 
-    function withdraw() public payable onlyOwner{
+    function withdraw() public payable onlyOwner {
         /**
-         * Copy s_funders into memory space variable `funders`, where reading from it 
+         * Copy s_funders into memory space variable `funders`, where reading from it
          * is a lot cheaper
-         * 
+         *
          * mappings can't be in memory
          */
         address[] memory funders = s_funders;
-        for(uint256 funderIndex = 0; funderIndex < funders.length; funderIndex++){
+        for (
+            uint256 funderIndex = 0;
+            funderIndex < funders.length;
+            funderIndex++
+        ) {
             address funder = funders[funderIndex];
             s_addressToAmountFunded[funder] = 0;
         }
         s_funders = new address[](0);
         (bool callSuccess, ) = i_owner.call{value: address(this).balance}("");
-        require(callSuccess, "Call failed");
+        if (!callSuccess) {
+            revert FundMe__WithdrawFailed();
+        }
+        // require(callSuccess, "Call failed");
+    }
+
+    function getOwner() public view returns (address) {
+        return i_owner;
+    }
+
+    function getFunders(uint256 index) public view returns (address) {
+        return s_funders[index];
+    }
+
+    function getAddressToAmountFunded(
+        address funder_address
+    ) public view returns (uint256) {
+        return s_addressToAmountFunded[funder_address];
+    }
+
+    function getPriceFeed() public view returns (AggregatorV3Interface) {
+        return s_priceFeed;
     }
 }

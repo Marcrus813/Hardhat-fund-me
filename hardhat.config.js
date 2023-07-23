@@ -63,6 +63,6 @@ module.exports = {
 		token: "ETH", // Default state, change if to change network
 	},
 	mocha: {
-		paths: ["./test/unit"],
+		timeout: 300000,
 	},
 };

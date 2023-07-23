@@ -18,11 +18,11 @@ const networkConfig = {
 const devChains = ["hardhat", "localhost"];
 const MOCK_ARGS = {
 	DECIMALS: 8,
-	INITIAL_ANSWER: 200000000000
-}
+	INITIAL_ANSWER: 200000000000,
+};
 
 module.exports = {
 	networkConfig,
 	devChains,
-	MOCK_ARGS
+	MOCK_ARGS,
 };

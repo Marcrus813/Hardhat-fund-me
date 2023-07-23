@@ -3,13 +3,13 @@ const { devChains, MOCK_ARGS } = require("../helper-hardhat-config");
 
 module.exports = async (hre) => {
 	const { getNamedAccounts, deployments } = hre;
-    const { deploy, log } = deployments;
+	const { deploy, log } = deployments;
 	const { deployer } = await getNamedAccounts();
 	const chainId = network.config.chainId;
 
 	// The mock contract should be different from actual project contracts, create a new folder in `contracts`
 	// Don't deploy to actual test net, can do it the way before: check chainId, can also specify in helper-config
-    console.log(`Detected network: ${network.name}`);
+	console.log(`Detected network: ${network.name}`);
 	if (devChains.includes(network.name)) {
 		// Deploy mocks
 		console.log("Local network detected, deploying mocks...");
