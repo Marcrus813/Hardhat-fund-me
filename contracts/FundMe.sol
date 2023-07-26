@@ -60,7 +60,7 @@ contract FundMe {
     }
 
     function fund() public payable {
-        if (!(msg.value.getConversionRate(s_priceFeed) > MIN_USD)) {
+        if (!(msg.value.getConversionRate(s_priceFeed) >= MIN_USD)) {
             revert FundMe__NotEnoughETH();
         }
 
