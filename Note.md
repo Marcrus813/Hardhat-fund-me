@@ -167,7 +167,7 @@ If there's global variables(is there forever), they are put in **Storage** slots
 >   - Example
 >     - Array
 >       - `uint256[] array` -> [2]: 0x00...01 The length of the array
->       - `array.push(222)` -> value `0x00...de` stored at `[keccak256(222)]` where `keccak256` is the hash function and `2` is the index of `array` in `Storage`(Sequential storage spot)
+>       - `array.push(222)` -> value `0x00...de` stored at `[keccak256(2)]` where `keccak256` is the hash function and `2` is the index of `array` in `Storage`(Sequential storage spot)
 >     - Map
 >       - Sequential storage spot is left blank
 >       - CANNOT be in `memory`
