@@ -170,6 +170,7 @@ If there's global variables(is there forever), they are put in **Storage** slots
 >       - `array.push(222)` -> value `0x00...de` stored at `[keccak256(2)]` where `keccak256` is the hash function and `2` is the index of `array` in `Storage`(Sequential storage spot)
 >     - Map
 >       - Sequential storage spot is left blank
+>       - Slot for elements: `slot = keccak256([key, mappingSlot]) // concatenate key and mapping slot`
 >       - CANNOT be in `memory`
 > - Constant and immutable variables do not take up storage, they are directly in byte code of the contract: `uint256 constant FIXED = 123` -> `FIXED` is a pointer to `123`
 
